@@ -17,8 +17,8 @@ public class Kiosk {
     private static final String BACK_LABEL = "뒤로가기";
     private static final String INVALID_INPUT_MESSAGE = "메뉴판에 존재하는 번호를 입력해주세요.";
     private static final String EXIT_MESSAGE = "\n프로그램을 종료합니다.";
-    private static final Scanner SCANNER = new Scanner(System.in);
 
+    private final Scanner scanner = new Scanner(System.in);
     private final List<Menu> menus;
 
     public Kiosk(List<Menu> menus) {
@@ -135,13 +135,13 @@ public class Kiosk {
     private int getUserNum(int optionCount) {
         while(true) {
             try {
-                int num = SCANNER.nextInt();
+                int num = scanner.nextInt();
                 if (num < 0 || num > optionCount)
                     throw new IllegalArgumentException();
                 return num;
             } catch (InputMismatchException e) {
                 print(INVALID_INPUT_MESSAGE);
-                SCANNER.next();
+                scanner.next();
             } catch (IllegalArgumentException e) {
                 print(INVALID_INPUT_MESSAGE);
             }
