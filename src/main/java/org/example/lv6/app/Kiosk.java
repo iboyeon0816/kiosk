@@ -90,16 +90,32 @@ public class Kiosk {
     }
 
     private void handleOrder() {
-        // 장바구니 아이템 목록 출력
-        printCartItems();
+        while (true) {
+            // 장바구니 아이템 목록 출력
+            printCartItems();
 
-        // 사용자 입력 받기
-        int userInput = getUserInput(1, 2);
-        if (userInput == 1) { // 주문하기
-            int discountRate = getDiscountRate();
-            float totalPrice = cart.getTotalPrice() * (100 - discountRate) / 100;
-            System.out.println("\n주문이 완료되었습니다. 금액은 W " + totalPrice + " 입니다.");
-            cart.clear();
+            // 사용자 입력 받기
+            int userInput = getUserInput(1, 3);
+            if (userInput == 1) { // 주문하기
+                int discountRate = getDiscountRate();
+                float totalPrice = cart.getTotalPrice() * (100 - discountRate) / 100;
+                System.out.println("\n주문이 완료되었습니다. 금액은 W " + totalPrice + " 입니다.");
+                cart.clear();
+                break;
+            }
+            else if (userInput == 2) { // 장바구니에서 항목 제거
+                System.out.println("\n제거할 항목의 이름을 입력하세요.");
+                String itemName = scanner.next();
+                cart.removeItemByName(itemName);
+                System.out.println("\n제거되었습니다.");
+
+                if (cart.isEmpty()) {
+                    break;
+                }
+            }
+            else {
+                break;
+            }
         }
     }
 
@@ -156,7 +172,7 @@ public class Kiosk {
     private void printCartItems() {
         System.out.println("\n아래와 같이 주문 하시겠습니까?\n[ Orders ]");
         cart.printCartItems();
-        System.out.println("\n[ Total ]\nW " + cart.getTotalPrice() + "\n\n1. 주문       2. 메뉴판");
+        System.out.println("\n[ Total ]\nW " + cart.getTotalPrice() + "\n\n1. 주문       2. 항목 제거     3. 메뉴판");
     }
 
     private void printMenuName(String menuName) {

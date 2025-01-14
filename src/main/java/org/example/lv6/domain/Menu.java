@@ -2,6 +2,7 @@ package org.example.lv6.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * 메뉴를 나타내는 클래스이다.
@@ -41,9 +42,7 @@ public class Menu {
      * 각 메뉴 항목은 번호와 함께 출력되며, 번호는 1부터 시작한다.
      */
     public void printMenuItems() {
-        int size = menuItems.size();
-        for (int i = 1; i <= size; i++) {
-            System.out.println(i + ". " + menuItems.get(i - 1));
-        }
+        AtomicInteger i = new AtomicInteger(1);
+        menuItems.forEach(m -> System.out.println(i.getAndIncrement() + ". " + m));
     }
 }

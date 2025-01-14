@@ -2,10 +2,11 @@ package org.example.lv6.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Cart {
 
-    private final List<MenuItem> cartItems = new ArrayList<>();
+    private List<MenuItem> cartItems = new ArrayList<>();
 
     public void addCartItem(MenuItem menuItem) {
         cartItems.add(menuItem);
@@ -19,6 +20,12 @@ public class Cart {
         return (float) cartItems.stream()
                 .mapToDouble(MenuItem::getPrice)
                 .sum();
+    }
+
+    public void removeItemByName(String itemName) {
+        cartItems = cartItems.stream()
+                .filter(i -> !i.getName().equals(itemName))
+                .collect(Collectors.toList());
     }
 
     public boolean isEmpty() {
