@@ -3,6 +3,7 @@ package org.example.lv6.app;
 import org.example.lv6.domain.Cart;
 import org.example.lv6.domain.Menu;
 import org.example.lv6.domain.MenuItem;
+import org.example.lv6.domain.enums.UserType;
 
 import java.util.InputMismatchException;
 import java.util.List;
@@ -94,10 +95,23 @@ public class Kiosk {
 
         // 사용자 입력 받기
         int userInput = getUserInput(1, 2);
-        if (userInput == 1) {
-            System.out.println("\n주문이 완료되었습니다. 금액은 W " + cart.getTotalPrice() + " 입니다.");
+        if (userInput == 1) { // 주문하기
+            int discountRate = getDiscountRate();
+            float totalPrice = cart.getTotalPrice() * (100 - discountRate) / 100;
+            System.out.println("\n주문이 완료되었습니다. 금액은 W " + totalPrice + " 입니다.");
             cart.clear();
         }
+    }
+
+    private int getDiscountRate() {
+        System.out.println("\n할인 정보를 입력해주세요.");
+        int i = 1;
+        for (UserType userType : UserType.values()) {
+            System.out.println(i++ + ". " + userType);
+        }
+
+        int userInput = getUserInput(1, UserType.values().length);
+        return UserType.values()[userInput - 1].getDiscountRate();
     }
 
     private void handelReset() {
