@@ -1,4 +1,4 @@
-package org.example.lv6.domain;
+package org.example.lv6.domain.menu;
 
 /**
  * 메뉴 항목을 나타내는 클래스이다.

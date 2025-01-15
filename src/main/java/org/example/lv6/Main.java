@@ -1,8 +1,8 @@
 package org.example.lv6;
 
 import org.example.lv6.app.Kiosk;
-import org.example.lv6.domain.Menu;
-import org.example.lv6.domain.MenuItem;
+import org.example.lv6.domain.menu.Menu;
+import org.example.lv6.domain.menu.MenuItem;
 
 import java.util.ArrayList;
 import java.util.List;

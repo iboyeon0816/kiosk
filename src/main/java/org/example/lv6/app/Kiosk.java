@@ -1,8 +1,8 @@
 package org.example.lv6.app;
 
-import org.example.lv6.domain.Cart;
-import org.example.lv6.domain.Menu;
-import org.example.lv6.domain.MenuItem;
+import org.example.lv6.domain.cart.Cart;
+import org.example.lv6.domain.menu.Menu;
+import org.example.lv6.domain.menu.MenuItem;
 import org.example.lv6.domain.enums.UserType;
 
 import java.util.InputMismatchException;
@@ -77,7 +77,7 @@ public class Kiosk {
         printMenu("MAIN",
                 () -> {
                     for (int i = 1; i <= menus.size(); i++) {
-                        System.out.println((i) + ". " + menus.get(i - 1).getCategory());
+                        System.out.println(i + ". " + menus.get(i - 1).getCategory());
                     }
                 },
                 "종료");
@@ -261,12 +261,12 @@ public class Kiosk {
      * '주문 확정', '항목 제거', '메뉴판으로 돌아가기' 옵션을 제공한다.
      */
     private void printOrderConfirmation() {
-        System.out.println("\n아래와 같이 주문 하시겠습니까?");
+        System.out.println("\n아래와 같이 주문 하시겠습니까?\n");
         System.out.println("[ Orders ]");
         cart.printCartItems();
         System.out.println("\n[ Total ]");
-        System.out.println("W " + cart.getTotalPrice() + "\n");
-        System.out.println("1. 주문       2. 항목 제거     3. 메뉴판");
+        System.out.println("W " + String.format("%.2f", cart.getTotalPrice()) + "\n");
+        System.out.println("1. 주문      2. 항목 제거     3. 메뉴판");
     }
 
     /**
@@ -307,8 +307,11 @@ public class Kiosk {
     private void removeItemFromCart() {
         System.out.println("\n제거할 항목의 이름을 입력하세요.");
         String itemName = scanner.next();
-        cart.removeItemByName(itemName);
-        System.out.println("\n제거되었습니다.");
+        if (cart.removeItemByName(itemName)) {
+            System.out.println("\n제거되었습니다.");
+        } else {
+            System.out.println("\n항목이 존재하지 않습니다.");
+        }
     }
 
     /**

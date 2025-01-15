@@ -1,4 +1,4 @@
-package org.example.lv6.domain;
+package org.example.lv6.domain.menu;
 
 import java.util.ArrayList;
 import java.util.List;
