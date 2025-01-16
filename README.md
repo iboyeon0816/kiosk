@@ -123,7 +123,7 @@ src/main/java/org/example
 <br>
 
 ## 키오스크 애플리케이션 Flow Chart
-![키오스크 애플리케이션의 전반적인 동작 과정](https://github.com/user-attachments/assets/a4e65a43-5130-4e82-b9ff-8ebd83c182aa)
+![키오스크 애플리케이션의 전반적인 동작 과정](https://github.com/user-attachments/assets/875ecd66-dac9-4c5e-a68a-8264b4134eb5)
 
 <br>
 
